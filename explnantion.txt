@@ -1,0 +1,20 @@
+q1) explanation
+I used conditional statements (if-elif) to check if the argument is a file (-f) or a directory (-d). For files, wc was used to count lines, words, and characters; for directories, ls piped into wc -l calculated the file counts.
+q2) explanation
+I utilized grep -c to count specific occurrences of log levels and tail -n 1 to extract the last (most recent) error. Output redirection (>) was used to generate the summary text file with the current date.
+q3) explanation
+I read the CSV file line-by-line using a while loop with IFS=, to separate fields. Arithmetic comparisons (-lt) tracked the number of failed subjects per student to categorize them correctly.
+q4) explanation
+I used grep -E with a regular expression to filter valid email formats and piped the result to sort and uniq to remove duplicates. grep -v was used to invert the match and capture invalid emails.
+q5) explanation
+I used the comm command to identify files unique to each directory and those common to both. For common files, cmp -s checked byte-by-byte content equality without displaying the differences.
+q6) explanation
+I utilized tr to tokenize the text into a list of words. A for loop iterated through these words to calculate lengths and find the maximum/minimum, while sort | uniq | wc -l handled the unique word count efficiently.
+q7) explanation
+I used Bash regex matching (=~) inside a loop to classify words. Words were filtered based on whether they contained strictly vowels, strictly consonants, or a mix starting with a consonant, and redirected to respective files
+q8) explanation
+I executed the mv command with & to run it in the background for each file. The $! variable captured the Process ID (PID) of the most recent background job, and wait paused the script until all background processes completed.
+q9) explanation
+To prevent zombie processes, I used wait(NULL) in the parent process immediately after forking. This ensures the parent reads the child's exit status, allowing the kernel to remove the child's entry from the process table.
+q10) explanation
+I registered custom signal handlers using signal() for SIGTERM and SIGINT. The parent process pauses until it receives signals sent by the child processes via the kill() function, demonstrating different responses (logging vs. exiting) for each signal.
