@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main() {
+    pid_t pid;
+    int i;
+
+    for(i = 0; i < 3; i++) {
+        pid = fork();
+        
+        if (pid == 0) {
+            // Child process
+            printf("Child %d (PID: %d) created and exiting.\n", i+1, getpid());
+            exit(0);
+        } else if (pid > 0) {
+            // Parent process
+            // Wait immediately to clean up child
+            pid_t cleaned_pid = wait(NULL);
+            printf("Parent cleaned up Child PID: %d\n", cleaned_pid);
+        }
+    }
+    
+    return 0;
+}
